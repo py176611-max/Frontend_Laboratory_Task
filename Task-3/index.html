@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Responsive Website</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+      
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 220px;
+            height: 100%;
+            background-color: #222;
+            padding: 30px 15px;
+        }
+
+        .sidebar h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+
+       
+        .main {
+            margin-left: 220px;
+            padding: 30px;
+        }
+
+        section {
+            min-height: 500px;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        section h1 {
+            color: #333;
+        }
+
+
+        
+        .product {
+            width: 280px;
+            margin: 20px;
+            padding: 20px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #fafafa;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .product a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+
+        
+        .blog-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .blog {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #aaa;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .blog a {
+            color: blue;
+            text-decoration: none;
+        }
+
+
+        .contact {
+            text-align: center;
+        }
+
+
+        
+        @media (max-width: 600px) {
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+
+            .sidebar a {
+                text-align: center;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .blog-container {
+                flex-direction: column;
+            }
+
+            .product {
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+   
+
+    <div class="sidebar">
+
+        <h2>My Website</h2>
+
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+
+    </div>
+
+
+  
+
+    <div class="main">
+
+        
+        <section id="home">
+
+            <h1>Welcome to My Website</h1>
+
+            <p>
+                Welcome to my responsive website.
+                Explore products, blogs and contact information.
+            </p>
+
+        </section>
+
+
+        
+
+        <section id="products">
+
+            <h1>Our Products</h1>
+
+            <div class="product">
+
+                <img src="https://rukminim2.flixcart.com/image/480/480/xif0q/smartwatch/n/o/z/-enriched-transparent-original-imah76jstup5zdww.png?q=90" alt="Smart Watch">
+
+                <h2>Smart Watch</h2>
+
+                <p>Price: ₹1999</p>
+
+                <a href="#">Buy Now</a>
+
+            </div>
+
+        </section>
+
+
+        
+
+        <section id="blog">
+
+            <h1>Our Blog</h1>
+
+            <div class="blog-container">
+
+                <div class="blog">
+
+                    <h2>HTML</h2>
+
+                    <p>
+                        HTML is used to create the structure
+                        of a webpage.
+                    </p>
+
+                    <a href="#">Read More</a>
+
+                </div>
+
+
+                <div class="blog">
+
+                    <h2>CSS</h2>
+
+                    <p>
+                        CSS is used to style and design
+                        webpages.
+                    </p>
+
+                    <a href="#">Read More</a>
+
+                </div>
+
+
+                <div class="blog">
+
+                    <h2>Flexbox</h2>
+
+                    <p>
+                        Flexbox helps us create responsive
+                        layouts.
+                    </p>
