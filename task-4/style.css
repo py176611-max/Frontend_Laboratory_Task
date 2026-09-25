@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #050b24;
+    color: white;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background: rgba(5, 11, 36, 0.95);
+}
+
+.navbar-brand {
+    font-size: 25px;
+    font-weight: bold;
+    color: #00d9ff !important;
+}
+
+.nav-link {
+    color: white !important;
+    margin: 0 8px;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00d9ff !important;
+    transform: translateY(-3px);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.hero h1 span {
+    color: #00d9ff;
+}
+
+.rocket {
+    font-size: 120px;
+    animation: rocketFloat 3s ease-in-out infinite;
+}
+
+.astronaut {
+    font-size: 90px;
+    animation: astronautFloat 4s ease-in-out infinite;
+}
+
+@keyframes rocketFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes astronautFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.btn-space {
+    background: #00d9ff;
+    color: #00111a;
+    font-weight: bold;
+}
+
+.btn-space:hover {
+    background: white;
+}
+
+.feature-card {
+    background: #101a3d;
+    border: 1px solid #26345f;
+    border-radius: 15px;
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: #00d9ff;
+}
+
+.feature-card h4 {
+    color: #00d9ff;
+}
+
+footer {
+    background: #03071a;
+    padding: 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .rocket {
+        font-size: 90px;
+    }
+
+    .astronaut {
+        font-size: 65px;
+    }
+}
