@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 475px;
+            background: #bcbcbc;
+            padding: 25px;
+            border: 2px solid #777;
+            border-radius: 18px;
+        }
+
+        .display {
+            height: 140px;
+            background: #f1f1f1;
+            border: 2px solid #777;
+            border-radius: 8px;
+            margin-bottom: 22px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        #expression {
+            font-size: 22px;
+            color: #555;
+        }
+
+        #result {
+            font-size: 48px;
+            color: #222;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 80px;
+            font-size: 23px;
+            border: 2px solid #777;
+            border-radius: 7px;
+            background: #eeeeee;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #dddddd;
+        }
+
+        .clear {
+            grid-column: span 2;
+            background: #ffa6a6;
+        }
+
+        .delete {
+            grid-column: span 2;
+            background: #aaa6f5;
+        }
+
+        .clear:hover {
+            background: #ff9292;
+        }
+
+        .delete:hover {
+            background: #9993eb;
+        }
+
+        @media (max-width: 500px) {
+            .calculator {
+                width: 95%;
+                padding: 15px;
+            }
+
+            button {
+                height: 65px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <div class="display">
+            <div id="expression"> </div>
+            <div id="result">0</div>
+        </div>
+
+        <div class="buttons">
+
+            <button class="clear" onclick="clearDisplay()">CLEAR</button>
+            <button class="delete" onclick="deleteNumber()">DELETE</button>
+
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="chooseOperator('/')">÷</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="chooseOperator('*')">×</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="chooseOperator('-')">-</button>
+
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="chooseOperator('+')">+</button>
+
+        </div>
+    </div>
+
+    <script>
+
+        let currentInput = "";
+        let previousInput = "";
+        let operator = "";
+
+        const result = document.getElementById("result");
+        const expression = document.getElementById("expression");
+
+        function appendNumber(number) {
+
+            if (number === "." && currentInput.includes(".")) {
+                return;
+            }
+
+            currentInput += number;
+            result.innerText = currentInput;
+        }
+
+        function chooseOperator(op) {
+
+            if (currentInput === "") return;
+
+            if (previousInput !== "") {
+                calculate();
+            }
+
+            previousInput = currentInput;
+            operator = op;
+
+            expression.innerText = previousInput + " " + op;
+            currentInput = "";
+        }
+
+        function calculate() {
+
+            if (previousInput === "" || currentInput === "" || operator === "") {
+                return;
+            }
+
+            let num1 = parseFloat(previousInput);
+            let num2 = parseFloat(currentInput);
+            let answer;
+
+            switch (operator) {
+
+                case "+":
+                    answer = num1 + num2;
+                    break;
+
+                case "-":
+                    answer = num1 - num2;
+                    break;
+
+                case "*":
+                    answer = num1 * num2;
+                    break;
+
+                case "/":
+                    if (num2 === 0) {
+                        result.innerText = "Error";
+                        currentInput = "";
+                        previousInput = "";
+                        operator = "";
+                        expression.innerText = "";
+                        return;
+                    }
+                    answer = num1 / num2;
+                    break;
+            }
+
+            expression.innerText =
+                previousInput + " " + operator + " " + currentInput + " =";
+
+            currentInput = String(Number(answer.toPrecision(10)));
+            result.innerText = currentInput;
+
+            previousInput = "";
+            operator = "";
+        }
+
+        function clearDisplay() {
+
+            currentInput = "";
+            previousInput = "";
+            operator = "";
+
+            result.innerText = "0";
+            expression.innerText = "";
+        }
+
+        function deleteNumber() {
+
+            currentInput = currentInput.slice(0, -1);
+
+            result.innerText = currentInput || "0";
+        }
+
+    </script>
+
+</body>
+</html>
