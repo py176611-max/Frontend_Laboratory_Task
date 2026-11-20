@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Task 6</title>
+</head>
+<body>
+
+    <h2>JavaScript Functions and Array Methods</h2>
+
+    <script>
+
+        // 1. JavaScript Function
+        function add(a, b) {
+            return a + b;
+        }
+
+        document.write("<h3>Function</h3>");
+        document.write("Addition: " + add(10, 20));
+
+
+        // 2. Closure
+        function counter() {
+            let count = 0;
+
+            return function() {
+                count++;
+                return count;
+            };
+        }
+
+        let result = counter();
+
+        document.write("<h3>Closure</h3>");
+        document.write(result() + "<br>");
+        document.write(result() + "<br>");
+        document.write(result() + "<br>");
+
+
+        // 3. IIFE
+        document.write("<h3>IIFE</h3>");
+
+        (function() {
+            document.write("This is an IIFE function.");
+        })();
+
+
+        // 4. Array Methods
+        let numbers = [1, 2, 3, 4, 5];
+
+        // forEach
+        document.write("<h3>forEach</h3>");
+
+        numbers.forEach(function(num) {
+            document.write(num + " ");
+        });
+
+
+        // map
+        let square = numbers.map(function(num) {
+            return num * num;
+        });
+
+        document.write("<h3>map</h3>");
+        document.write(square);
+
+
+        // filter
+        let even = numbers.filter(function(num) {
+            return num % 2 == 0;
+        });
+
+        document.write("<h3>filter</h3>");
+        document.write(even);
+
+
+        // reduce
+        let sum = numbers.reduce(function(total, num) {
+            return total + num;
+        }, 0);
+
+        document.write("<h3>reduce</h3>");
+        document.write("Sum: " + sum);
+
+    </script>
+
+</body>
+</html>
