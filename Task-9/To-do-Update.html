@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 9 - Asynchronous Programming</title>
+</head>
+<body>
+
+    <h2>Asynchronous Programming</h2>
+    <button onclick="fetchData()">Fetch Data</button>
+
+    <p id="result"></p>
+
+    <script>
+        function fetchData() {
+
+            document.getElementById("result").innerHTML =
+                "Fetching data...";
+
+            let promise = new Promise((resolve, reject) => {
+
+                setTimeout(() => {
+                    resolve("Data fetched successfully from server!");
+                }, 3000);
+
+            });
+
+            promise.then((data) => {
+                document.getElementById("result").innerHTML = data;
+            });
+
+        }
+    </script>
+
+</body>
+</html>
