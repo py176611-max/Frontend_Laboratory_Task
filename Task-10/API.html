@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Finder</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: lightblue;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .university {
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>University Finder</h1>
+
+    <input type="text" id="country"
+           placeholder="Enter Country Name">
+
+    <button onclick="getUniversities()">
+        Search
+    </button>
+
+    <div id="result"></div>
+
+    <script>
+        function getUniversities() {
+
+            let country = document.getElementById("country").value;
+
+            let result = document.getElementById("result");
+
+            result.innerHTML = "Loading...";
+
+            fetch("http://universities.hipolabs.com/search?country=" + encodeURIComponent(country))
+            .then(response => response.json())
+
+            .then(data => {
+
+                result.innerHTML = "";
+
+                if (data.length === 0) {
+                    result.innerHTML = "No universities found!";
+                    return;
+                }
+
+                data.forEach(university => {
+
+                    result.innerHTML += `
+                        <div class="university">
+                            <h3>${university.name}</h3>
+
+                            <a href="${university.web_pages[0]}"
+                               target="_blank">
+                               Visit Website
+                            </a>
+                        </div>
+                    `;
+
+                });
+
+            })
+
+            .catch(error => {
+                result.innerHTML = "Error fetching data!";
+            });
+        }
+    </script>
+
+</body>
+</html>
