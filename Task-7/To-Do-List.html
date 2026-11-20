@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 7 - DOM Manipulation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        input {
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            background: #eee;
+            padding: 12px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove {
+            background: red;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 450px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .thumbnails img {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            margin: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 5px;
+        }
+
+        .thumbnails img:hover {
+            border-color: #6c63ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Interactive Applications</h1>
+
+    <!-- TO-DO LIST -->
+
+    <div class="container">
+
+        <h2>To-Do List</h2>
+
+        <input type="text" id="taskInput"
+        placeholder="Enter your task">
+
+        <button id="addBtn">Add Task</button>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+
+    <!-- IMAGE GALLERY -->
+
+    <div class="container">
+
+        <h2>Image Gallery</h2>
+
+        <img id="mainImage"
+        class="main-image"
+        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600"
+        alt="Main Image">
+
+        <div class="thumbnails">
+
+            <img class="thumbnail"
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600"
+            data-full="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1000"
+            alt="Nature">
+
+            <img class="thumbnail"
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600"
+            data-full="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000"
+            alt="Beach">
+
+            <img class="thumbnail"
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600"
+            data-full="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1000"
+            alt="Mountain">
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // TO-DO LIST
+
+        const taskInput = document.getElementById("taskInput");
+
+        const addBtn = document.getElementById("addBtn");
+
+        const taskList = document.getElementById("taskList");
+
+
+        addBtn.addEventListener("click", function() {
+
+            let task = taskInput.value.trim();
+
+            if (task === "") {
+                alert("Please enter a task");
+                return;
+            }
+
+            let li = document.createElement("li");
+
+            li.textContent = task;
+
+            let deleteBtn = document.createElement("button");
+
+            deleteBtn.textContent = "Remove";
+
+            deleteBtn.className = "remove";
+
+            deleteBtn.addEventListener("click", function() {
+                li.remove();
+            });
+
+            li.appendChild(deleteBtn);
+
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+
+        });
+
+
+        // IMAGE GALLERY
+
+        const mainImage = document.getElementById("mainImage");
+
+        const thumbnails = document.querySelectorAll(".thumbnail");
+
+
+        thumbnails.forEach(function(image) {
+
+            image.addEventListener("click", function() {
+
+                mainImage.src = image.dataset.full;
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
